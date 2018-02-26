@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220232845) do
+ActiveRecord::Schema.define(version: 20180226233902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ad_sizes", force: :cascade do |t|
-    t.string "name"
-    t.string "device_ids"
+    t.string  "name"
+    t.integer "device_id"
+    t.integer "format_id"
   end
 
   create_table "creative_builder_creatives", force: :cascade do |t|
@@ -41,6 +42,11 @@ ActiveRecord::Schema.define(version: 20180220232845) do
     t.integer "ad_size_id"
     t.string  "type"
     t.integer "primary_feature_id"
+    t.integer "device_id"
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "flights", force: :cascade do |t|
@@ -61,6 +67,10 @@ ActiveRecord::Schema.define(version: 20180220232845) do
   create_table "rate_plans", force: :cascade do |t|
     t.integer "rate_card_id"
     t.jsonb   "creative_configuration"
+  end
+
+  create_table "video_creative_types", force: :cascade do |t|
+    t.string "name"
   end
 
 end
